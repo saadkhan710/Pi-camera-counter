@@ -18,6 +18,16 @@ app = FastAPI(
     version="1.0.0"
 )
 
+@app.get("/")
+async def root():
+    """Root endpoint that provides basic API information"""
+    return {
+        "message": "Raspberry Pi Counting API",
+        "version": "1.0.0",
+        "docs": "/docs",
+        "redoc": "/redoc"
+    }
+
 @app.post("/api/count/upload", status_code=status.HTTP_201_CREATED)
 async def upload_counts(request: PiUploadRequest):
     """Endpoint for Raspberry Pi to upload new log entries"""
